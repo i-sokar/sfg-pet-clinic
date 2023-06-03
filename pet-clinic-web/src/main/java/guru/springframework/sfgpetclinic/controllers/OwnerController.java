@@ -20,6 +20,8 @@ public String listOwners(Model model){
     model.addAttribute("owners",ownerServices.findall());
     return "owners/index";
 }
+@RequestMapping("/find")
+public String notimp(){return "notImpl";}
 
 
 }
