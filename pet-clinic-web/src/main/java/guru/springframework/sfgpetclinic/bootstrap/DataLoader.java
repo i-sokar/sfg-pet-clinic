@@ -1,10 +1,7 @@
 package guru.springframework.sfgpetclinic.bootstrap;
 
 import guru.springframework.sfgpetclinic.model.*;
-import guru.springframework.sfgpetclinic.services.OwnerServices;
-import guru.springframework.sfgpetclinic.services.PetTypeService;
-import guru.springframework.sfgpetclinic.services.SpecialityService;
-import guru.springframework.sfgpetclinic.services.VetServices;
+import guru.springframework.sfgpetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -17,12 +14,14 @@ public class DataLoader  implements CommandLineRunner {
     private final VetServices vetServices;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerServices ownerServices, VetServices vetServices, PetTypeService petTypeService, SpecialityService specialityService) {
+    public DataLoader(OwnerServices ownerServices, VetServices vetServices, PetTypeService petTypeService, SpecialityService specialityService, VisitService visitService) {
         this.ownerServices = ownerServices;
         this.vetServices = vetServices;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -82,6 +81,15 @@ public class DataLoader  implements CommandLineRunner {
         rawanPet.setOwner(owner2);
         owner2.getPets().add(rawanPet);
         ownerServices.save(owner2);
+
+
+        //create visit
+
+        Visit catVisit= new Visit();
+        catVisit.setPet(rawanPet);
+        catVisit.setLocalDate(LocalDate.now());
+        catVisit.setDescription("flu");
+        visitService.save(catVisit);
 
         System.out.println("loaded owners");
         //creating vets
