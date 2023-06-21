@@ -4,12 +4,13 @@ import guru.springframework.Repos.OwnerRepo;
 import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.services.OwnerServices;
 import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-
+@Component
 @Service
 @Profile("springjpa")
 public class OwnerJpaService implements OwnerServices {
