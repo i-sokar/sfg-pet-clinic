@@ -10,9 +10,17 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Table(name = "owners")
 public class Owner extends Person{
+    @Builder
+    public Owner(Long id,String firstName,String lastName,Set<Pet> pets, String city, String telephone, String address) {
+        super(id,firstName,lastName);
+        this.pets = pets;
+        this.city = city;
+        this.telephone = telephone;
+        this.address = address;
+    }
+
     @OneToMany(mappedBy = "owner",cascade = CascadeType.ALL)
     private Set<Pet> pets=new HashSet<>();
     @Column(name ="city" )
