@@ -75,6 +75,10 @@ private final PetTypeService petTypeService;
 
     @Override
     public Owner findBylastName(String lastname) {
-        return null;
+        return this.findAll()
+                .stream()
+                .filter(owner -> owner.getLastName().equalsIgnoreCase(lastname))
+                .findFirst()
+                .orElse(null);
     }
 }
