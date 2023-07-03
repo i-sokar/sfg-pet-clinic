@@ -21,7 +21,7 @@ public String listOwners(Model model){
     return "owners/index";
 }
 @RequestMapping("/find")
-public String notimp(){return "notImpl";}
+public String findOwners(){return "notImpl";}
 
 
 }
